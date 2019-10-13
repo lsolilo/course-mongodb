@@ -24,9 +24,7 @@ Presentation slides can be found [here](http://htmlpreview.github.io/?https://gi
 ### Accessing all data in collection
 ```javascript
 db.getCollection('companies').find({})
-```
-or:
-```javascript
+//or
 db.companies.find({})
 ```
 
@@ -39,9 +37,7 @@ SELECT * FROM companies
 
 ```javascript
 db.getCollection('companies').find({phone_number:'206.219.0537'})
-```
-or
-```javascript
+//or
 db.getCollection('companies').find({'phone_number':'206.219.0537'})
 ```
 
