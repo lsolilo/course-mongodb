@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>reveal.js</title>
+    <title>MongoDB</title>
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/reveal.css">
@@ -29,11 +29,26 @@
             <h1>Mongo DB</h1>
         </section>
         <section>
+            <h1>Things to know first:</h1>
+            <ul>
+                <li class="fragment">Basic database & SQL knowledge.</li>
+                <li class="fragment">Basic JavaScript and JSON format knowledge.</li>
+            </ul>
+        </section>
+        <section>
             <h1>What is it?</h1>
             <ul>
                 <li class="fragment">Non-relational database.</li>
                 <li class="fragment">Storing JSON-format documents.</li>
                 <li class="fragment">Based on JavaScript.</li>
+            </ul>
+        </section>
+        <section>
+            <h1>To perform the exercises:</h1>
+            <ul>
+                <li class="fragment">Installed MongoDB Community Server.</li>
+                <li class="fragment">Imported sample companies database.</li>
+                <li class="fragment">Installed Robo 3T as database client.</li>
             </ul>
         </section>
     </div>
@@ -46,6 +61,7 @@
     // - https://github.com/hakimel/reveal.js#configuration
     // - https://github.com/hakimel/reveal.js#dependencies
     Reveal.initialize({
+        transition: 'slide',
         dependencies: [
             {src: 'plugin/markdown/marked.js'},
             {src: 'plugin/markdown/markdown.js'},
