@@ -54,5 +54,26 @@ db.getCollection('companies').find({phone_number:'206.219.0537'}, {name:1, phone
 
 SQL equivalent:
 ```sql
-SELECT name, phone_number FROM companies WHERE phone_number = '206.219.0537'
+SELECT _id, name, phone_number FROM companies WHERE phone_number = '206.219.0537'
+```
+
+### Filtering by multiple fields
+
+```javascript
+db.getCollection('companies').find({founded_year:2008, founded_month:2})
+```
+
+```sql
+SELECT * FROM companies WHERE founded_year = 2008 AND founded_month = 2
+```
+
+### Counting elements
+
+```javascript
+db.getCollection('companies').find({founded_year:2008}).count()
+```
+
+SQL equivalent:
+```sql
+SELECT COUNT(*) FROM companies WHERE founded_year = 2008
 ```
