@@ -15,9 +15,14 @@ To perform the exercises:
 1. Install [Robo 3T client](https://robomongo.org/download)
 1. Download and import example [companies dataset](https://raw.githubusercontent.com/lsolilo/course-mongodb/master/data/companies.json)
 
-### Presentation
+### Reverences
 
-Presentation slides can be found [here](https://lsolilo.github.io/slides/mongodb-00-intro.html).
+Presentation: 
+https://lsolilo.github.io/slides/mongodb-00-intro.html
+
+Reference:
+https://docs.mongodb.com/manual/
+
 
 ## 01. Basic Queries
 
@@ -79,6 +84,20 @@ SQL equivalent:
 SELECT * FROM companies WHERE founded_year = 2008 AND founded_month = 2
 ```
 
+### Combining filters
+
+Find companies founded in 2008 or 2009:
+
+```javascript
+db.getCollection('companies').find({$or: [{founded_year:2008}, {founded_year:2009}]})
+```
+
+SQL equivalent:
+```sql
+SELECT * FROM companies WHERE founded_year = 2008 OR founded_year = 2009
+```
+
+
 ### Counting elements
 
 Find how many companies were founded in 2008:
@@ -94,12 +113,35 @@ SELECT COUNT(*) FROM companies WHERE founded_year = 2008
 
 ### Comparisons
 
+Find companies founded in 2010 or later:
+
 ```javascript
 db.getCollection('companies').find({founded_year:{$gte:2010}})
 ```
 
+SQL equivalent:
+```sql
+SELECT * FROM companies WHERE founded_year >= 2010
+```
+
 ### Sorting elements
+
+Find companies founded in 2010 or later and order them chronologically:
 
 ```javascript
 db.getCollection('companies').find({founded_year:{$gte:2010}}, {founded_year:1, founded_month:1}).sort({founded_year:1, founded_month:1})
+```
+
+SQL equivalent:
+```sql
+SELECT founded_year, founded_month FROM companies WHERE founded_year >= 2010 
+ORDER BY founded_year, founded_month
+```
+
+### Finding by nested collection elements
+
+Find companies with products named 'Stickam Mobile':
+
+```javascript
+db.getCollection('companies').find({'products.name':'Stickam Mobile'})
 ```
