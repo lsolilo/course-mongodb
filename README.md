@@ -129,7 +129,8 @@ SELECT * FROM companies WHERE founded_year >= 2010
 Find companies founded in 2010 or later and order them chronologically:
 
 ```javascript
-db.getCollection('companies').find({founded_year: {$gte: 2010}}, {founded_year: 1, founded_month: 1}).sort({founded_year: 1, founded_month: 1})
+db.getCollection('companies').find({founded_year: {$gte: 2010}}, {founded_year: 1, founded_month: 1})
+    .sort({founded_year: 1, founded_month: 1})
 ```
 
 SQL equivalent:
@@ -157,5 +158,6 @@ db.getCollection('companies').find({'products': {$elemMatch: {name: 'Webchat Lit
 Additional projection of filtered elements:
 
 ```javascript
-db.getCollection('companies').find({'products': {$elemMatch: {name: 'Webchat Lite', permalink: 'webchat-lite'}}}, {'products': {$elemMatch: {name: 'Webchat Lite', permalink: 'webchat-lite'}}})
+db.getCollection('companies').find({'products': {$elemMatch: {name: 'Webchat Lite', permalink: 'webchat-lite'}}},
+    {'products': {$elemMatch: {name: 'Webchat Lite', permalink: 'webchat-lite'}}})
 ```
