@@ -15,7 +15,7 @@ To perform the exercises:
 1. Install [Robo 3T client](https://robomongo.org/download)
 1. Download and import example [companies dataset](https://raw.githubusercontent.com/lsolilo/course-mongodb/master/data/companies.json)
 
-### Reverences
+### References
 
 Presentation: 
 https://lsolilo.github.io/slides/mongodb-00-intro.html
@@ -89,7 +89,7 @@ SELECT * FROM companies WHERE founded_year = 2008 AND founded_month = 2
 Find companies founded in 2008 or 2009:
 
 ```javascript
-db.getCollection('companies').find({$or: [{founded_year:2008}, {founded_year:2009}]})
+db.getCollection('companies').find({$or: [{founded_year: 2008}, {founded_year: 2009}]})
 ```
 
 SQL equivalent:
@@ -116,7 +116,7 @@ SELECT COUNT(*) FROM companies WHERE founded_year = 2008
 Find companies founded in 2010 or later:
 
 ```javascript
-db.getCollection('companies').find({founded_year:{$gte:2010}})
+db.getCollection('companies').find({founded_year: {$gte: 2010}})
 ```
 
 SQL equivalent:
@@ -129,12 +129,14 @@ SELECT * FROM companies WHERE founded_year >= 2010
 Find companies founded in 2010 or later and order them chronologically:
 
 ```javascript
-db.getCollection('companies').find({founded_year:{$gte:2010}}, {founded_year:1, founded_month:1}).sort({founded_year:1, founded_month:1})
+db.getCollection('companies').find({founded_year: {$gte: 2010}}, {founded_year: 1, founded_month: 1}).sort({founded_year: 1, founded_month: 1})
 ```
 
 SQL equivalent:
 ```sql
-SELECT founded_year, founded_month FROM companies WHERE founded_year >= 2010 
+SELECT founded_year, founded_month 
+FROM companies 
+WHERE founded_year >= 2010 
 ORDER BY founded_year, founded_month
 ```
 
@@ -143,5 +145,17 @@ ORDER BY founded_year, founded_month
 Find companies with products named 'Stickam Mobile':
 
 ```javascript
-db.getCollection('companies').find({'products.name':'Stickam Mobile'})
+db.getCollection('companies').find({'products.name': 'Stickam Mobile'})
+```
+
+Find companies with product named 'Webchat Lite' and permalink 'webchat-lite':
+
+```javascript
+db.getCollection('companies').find({'products': {$elemMatch: {name: 'Webchat Lite', permalink: 'webchat-lite'}}})
+```
+
+Additional projection of filtered elements:
+
+```javascript
+db.getCollection('companies').find({'products': {$elemMatch: {name: 'Webchat Lite', permalink: 'webchat-lite'}}}, {'products': {$elemMatch: {name: 'Webchat Lite', permalink: 'webchat-lite'}}})
 ```
